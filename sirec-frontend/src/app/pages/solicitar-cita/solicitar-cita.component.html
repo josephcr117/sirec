@@ -1,0 +1,38 @@
+<div class="container mt-4">
+    <h2>Solicitar Cita</h2>
+    <form [formGroup]="form" (ngSubmit)="solicitarCita()" class="row g-3">
+
+        <div class="col-md-6">
+            <label for="consultorio" class="form-label">Consultorio</label>
+            <select class="form-select" formControlName="idConsultorio" required>
+                <option [ngValue]="null">Seleccione un consultorio</option>
+                <option *ngFor="let c of consultorios" [value]="c.IDConsultorio">
+                    {{ c.Nombre }}
+                </option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="fecha" class="form-label">Fecha</label>
+            <input type="date" class="form-control" formControlName="fecha" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="hora" class="form-label">Hora</label>
+            <input type="time" class="form-control" formControlName="hora" step="1800" required>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">Observaciones</label>
+            <textarea class="form-control" formControlName="observaciones" rows="3"></textarea>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Enviar Solicitud</button>
+        </div>
+    </form>
+
+    <div *ngIf="mensaje" class="alert mt-3" [ngClass]="{ 'alert-success': exito, 'alert-danger': !exito }">
+        {{ mensaje }}
+    </div>
+</div>

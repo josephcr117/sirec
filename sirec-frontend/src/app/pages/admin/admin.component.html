@@ -1,0 +1,142 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/admin">
+              <span data-feather="home"></span>
+              Panel de Administración
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/asignar-medico">
+              <span data-feather="users"></span>
+              Asignar Médico a Consultorio
+            </a>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-danger w-100 mt-3" (click)="logout()">
+              Cerrar sesión
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2 class="h4">Usuarios Registrados</h2>
+        <button class="btn btn-success" (click)="abrirModalAgregar()">
+          <span data-feather="plus-circle"></span> Agregar Usuario
+        </button>
+      </div>
+
+      <!-- Tabla de Usuarios -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Roles</th>
+              <th style="width: 150px;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let usuario of usuarios">
+              <td>{{ usuario.id }}</td>
+              <td>{{ usuario.nombre }}</td>
+              <td>{{ usuario.correo }}</td>
+              <td>
+                <span *ngFor="let rol of usuario.roles; let i = index">
+                  {{ rol }}<span *ngIf="i < usuario.roles.length - 1">, </span>
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-sm btn-primary me-1" (click)="abrirModalEditar(usuario)">
+                  <span data-feather="edit"></span>
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="eliminarUsuario(usuario.id)">
+                  <span data-feather="trash-2"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Modal Agregar/Editar Usuario -->
+<div class="modal fade" id="modalAgregarUsuario" tabindex="-1" aria-labelledby="modalAgregarUsuarioLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <form [formGroup]="usuarioForm" (ngSubmit)="crearUsuario()" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalAgregarUsuarioLabel">
+          {{ editando ? 'Editar Usuario' : 'Agregar Usuario' }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <div class="modal-body row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-control" formControlName="nombre" required>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Apellido</label>
+          <input type="text" class="form-control" formControlName="apellido" required>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Correo</label>
+          <input type="email" class="form-control" formControlName="correo" required>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Contraseña</label>
+          <input type="password" class="form-control" formControlName="contrasena" [required]="!editando">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Cédula</label>
+          <input type="text" class="form-control" formControlName="cedula" required>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Teléfono</label>
+          <input type="text" class="form-control" formControlName="telefono" required>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Fecha de Nacimiento</label>
+          <input type="date" class="form-control" formControlName="fechaNacimiento">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Rol</label>
+          <select class="form-select" formControlName="idRol" required>
+            <option [ngValue]="null">Seleccione un rol</option>
+            <option [ngValue]="1">Administrador</option>
+            <option [ngValue]="2">Paciente</option>
+            <option [ngValue]="3">Médico</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success" [disabled]="usuarioForm.invalid">
+          {{ editando ? 'Actualizar' : 'Guardar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

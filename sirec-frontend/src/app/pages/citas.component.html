@@ -1,0 +1,35 @@
+<div class="container mt-4">
+    <h2>Agendar Cita</h2>
+
+    <form [formGroup]="citaForm" (ngSubmit)="crearCita()">
+        <div class="mb-3">
+            <label class="form-label">Fecha</label>
+            <input type="date" class="form-control" formControlName="fecha">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Hora</label>
+            <input type="time" class="form-control" formControlName="hora">
+        </div>
+
+        <div class="form-group">
+            <label for="consultorio">Consultorio</label>
+            <select id="consultorio" formControlName="idConsultorio" class="form-control">
+                <option value="">Seleccione un consultorio</option>
+                <option *ngFor="let c of consultorios" [value]="c.IDConsultorio">
+                    {{ c.Nombre }}
+                </option>
+            </select>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Observaciones</label>
+            <textarea class="form-control" formControlName="observaciones"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="citaForm.invalid">Agendar</button>
+    </form>
+
+    <div *ngIf="mensaje" class="alert alert-info mt-3">{{ mensaje }}</div>
+</div>

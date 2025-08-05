@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <h2>Citas asignadas</h2>
+  <p *ngIf="mensaje" class="text-danger">{{ mensaje }}</p>
+
+  <div *ngIf="citas.length === 0">No hay citas asignadas.</div>
+
+  <div *ngIf="citas.length > 0" class="table-responsive">
+    <table class="table table-bordered table-striped align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Consultorio</th>
+          <th>Paciente</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cita of citas">
+          <td>{{ cita.Fecha | date: 'shortDate' }}</td>
+          <td>{{ cita.Hora }}</td>
+          <td>{{ cita.Consultorio }}</td>
+          <td>{{ cita.Paciente }}</td>
+          <td>{{ cita.Estado }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarEstado"
+              (click)="seleccionarCita(cita.IDCita, cita.Estado)">
+              Cambiar estado
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal para cambiar estado -->
+<div class="modal fade" id="modalEditarEstado" tabindex="-1" aria-labelledby="modalEditarEstadoLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <form (ngSubmit)="actualizarEstado()" [formGroup]="editarEstadoForm" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalEditarEstadoLabel">Cambiar estado de la cita</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <label for="estado" class="form-label">Estado</label>
+        <select formControlName="estado" class="form-select">
+          <option value="Realizado">Realizado</option>
+          <option value="Cancelado por medico">Cancelar</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success">Actualizar</button>
+      </div>
+    </form>
+  </div>
+</div>

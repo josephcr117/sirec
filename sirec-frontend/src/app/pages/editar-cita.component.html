@@ -1,0 +1,35 @@
+<div class="container mt-4">
+    <h2>Editar Cita</h2>
+
+    <form [formGroup]="citaForm" (ngSubmit)="actualizarCita()">
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha</label>
+            <input type="date" class="form-control" id="fecha" formControlName="fecha" />
+        </div>
+
+        <div class="mb-3">
+            <label for="hora" class="form-label">Hora</label>
+            <input type="time" class="form-control" id="hora" formControlName="hora" />
+        </div>
+
+        <div class="mb-3">
+            <label for="observaciones" class="form-label">Observaciones</label>
+            <textarea class="form-control" formControlName="observaciones" rows="3"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="idConsultorio" class="form-label">Consultorio</label>
+            <select class="form-select" formControlName="idConsultorio" required>
+                <option value="">Seleccione un consultorio</option>
+                <option *ngFor="let c of consultorios" [value]="c.idConsultorio || c.IDConsultorio">
+                    {{ c.nombre || c.Nombre }}
+                </option>
+            </select>
+
+        </div>
+
+        <button type="submit" class="btn btn-success">Actualizar</button>
+    </form>
+
+    <p class="mt-3 text-success" *ngIf="mensaje">{{ mensaje }}</p>
+</div>

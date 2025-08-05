@@ -1,0 +1,34 @@
+<div class="container mt-4">
+    <h2 class="mb-4">Mis Citas</h2>
+
+    <div class="text-end mb-3">
+        <a class="btn btn-primary me-1" routerLink="/solicitar-cita">Solicitar Cita</a>
+        <a class="btn btn-danger" routerLink="/logout">Logout</a>
+    </div>
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Estado</th>
+                <th>Consultorio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cita of citas">
+                <td>{{ cita.Fecha | date: 'yyyy-MM-dd' }}</td>
+                <td>{{ cita.Hora }}</td>
+                <td>{{ cita.Estado }}</td>
+                <td>{{ cita.Consultorio?.Nombre }}</td>
+                <td>
+                    <button class="btn btn-warning btn-sm me-1" [routerLink]="['/editar-cita', cita.IDCita]" >
+                        Editar
+                    </button>
+                    <button class="btn btn-sm btn-danger" (click)="eliminarCita(cita.IDCita)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
