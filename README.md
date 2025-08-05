@@ -34,11 +34,11 @@ SIREC es una aplicación web completa que permite a pacientes, médicos y admini
 
 ## 📁 Estructura del Proyecto
 
-
+```
 SIREC/
 ├── sirec-frontend/      → Proyecto Angular
 └── sirec-backend/       → Proyecto ASP.NET Core Web API
-
+```
 ---
 
 ## ⚙️ Configuración
