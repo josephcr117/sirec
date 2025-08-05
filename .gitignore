@@ -1,0 +1,16 @@
+# Angular
+sirec-frontend/node_modules/
+sirec-frontend/dist/
+sirec-frontend/.angular/cache/
+
+# .NET
+sirec-backend/bin/
+sirec-backend/obj/
+sirec-backend/*.db
+sirec-backend/appsettings.*.json.user
+
+# General
+.env
+*.log
+.vscode/
+.DS_Store

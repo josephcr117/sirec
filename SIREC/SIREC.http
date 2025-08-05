@@ -1,0 +1,6 @@
+@SIREC_HostAddress = http://localhost:5147
+
+GET {{SIREC_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
