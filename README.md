@@ -59,15 +59,19 @@ SIREC/
    - Crea la base de datos en SQL Server.
    - Ajusta `appsettings.json` con tu cadena de conexión.
    - Aplica migraciones:
-       dotnet ef database update
+```
+     dotnet ef database update
+```
    - Ejecuta el backend:
+   ```
        dotnet run --project sirec-backend
-
+```
 3. Ejecuta el frontend:
+```
      cd sirec-frontend
      npm install
      ng serve
-
+```
 ---
 
 ## 🧪 Créditos
