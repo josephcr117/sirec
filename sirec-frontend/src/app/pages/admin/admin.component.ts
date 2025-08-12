@@ -87,30 +87,27 @@ export class AdminComponent implements OnInit, AfterViewInit {
     this.editando = true;
     this.usuarioActualId = usuario.id;
 
-    this.http
-      .get<any>(`http://localhost:5147/api/Usuario/${usuario.id}`)
-      .subscribe({
-        next: (detalles) => {
-          const [nombre, ...resto] = detalles.nombre.split(' ');
-          const apellido = resto.join(' ') || '';
+    const [nombre, ...resto] = usuario.nombre.split(' ');
+    const apellido = resto.join(' ');
 
-          this.usuarioForm.patchValue({
-            nombre: nombre,
-            apellido: apellido,
-            correo: detalles.correo,
-            contrasena: '',
-            cedula: detalles.cedula,
-            telefono: detalles.telefono,
-            fechaNacimiento: detalles.fechaNacimiento?.split('T')[0],
-            idRol: detalles.usuarioRoles?.[0]?.idRol || 2,
-          });
+    this.usuarioForm.patchValue({
+      nombre,
+      apellido,
+      correo: usuario.correo,
+      contrasena: '', // opcional
+      cedula: usuario.cedula || '',
+      telefono: usuario.telefono || '',
+      fechaNacimiento: usuario.fechaNacimiento
+        ? usuario.fechaNacimiento.substring(0, 10) // yyyy-MM-dd
+        : '1990-01-01',
+      idRol: usuario.roles.includes('Administrador')
+        ? 1
+        : usuario.roles.includes('Médico')
+        ? 3
+        : 2,
+    });
 
-          setTimeout(() => feather.replace(), 0);
-          this.mostrarModal();
-        },
-        error: (err) =>
-          console.error('Error al cargar detalles del usuario:', err),
-      });
+    this.mostrarModal();
   }
 
   private mostrarModal(): void {
@@ -137,21 +134,14 @@ export class AdminComponent implements OnInit, AfterViewInit {
 
     if (this.editando && this.usuarioActualId) {
       const payload = {
-        idUsuario: this.usuarioActualId,
         nombre: datos.nombre,
         apellido: datos.apellido,
         correo: datos.correo,
-        contraseña: datos.contrasena || 'default',
+        contraseña: datos.contrasena || null, // null = no cambiar
         cedula: datos.cedula,
         telefono: datos.telefono,
-        fechaNacimiento: datos.fechaNacimiento,
-        usuarioRoles: [
-          {
-            idRol: Number(datos.idRol),
-            rol: null,
-            usuario: null,
-          },
-        ],
+        fechaNacimiento: datos.fechaNacimiento || null,
+        idRol: Number(datos.idRol) || null,
       };
 
       this.http
@@ -168,7 +158,6 @@ export class AdminComponent implements OnInit, AfterViewInit {
           error: (err) => console.error('Error al actualizar usuario:', err),
         });
     } else {
-      // POST (registro nuevo usuario)
       this.http
         .post(`http://localhost:5147/api/Auth/register?idRol=${datos.idRol}`, {
           nombre: datos.nombre,

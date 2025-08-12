@@ -95,27 +95,45 @@ namespace SIREC.Controllers
 
         // PUT: api/usuario/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
+        public async Task<IActionResult> PutUsuario(int id, [FromBody] UsuarioUpdateDto dto)
         {
-            if (id != usuario.IDUsuario)
-                return BadRequest();
+            var usuario = await _context.Usuarios
+                .Include(u => u.UsuarioRoles)
+                .FirstOrDefaultAsync(u => u.IDUsuario == id);
 
-            _context.Entry(usuario).State = EntityState.Modified;
+            if (usuario == null)
+                return NotFound();
 
-            try
+            // Actualiza campos básicos
+            usuario.Nombre = dto.Nombre;
+            usuario.Apellido = dto.Apellido;
+            usuario.Correo = dto.Correo;
+            usuario.Cedula = dto.Cedula;
+            usuario.Telefono = dto.Telefono;
+
+            if (dto.FechaNacimiento.HasValue)
+                usuario.FechaNacimiento = dto.FechaNacimiento.Value;
+
+            // Contraseña solo si la envían con algo
+            if (!string.IsNullOrWhiteSpace(dto.Contraseña))
+                usuario.Contraseña = dto.Contraseña;
+
+            // Si envían IdRol, actualizamos su(s) rol(es)
+            if (dto.IdRol.HasValue)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.Usuarios.Any(e => e.IDUsuario == id))
-                    return NotFound();
-                else
-                    throw;
+                // (simple: un solo rol por usuario)
+                usuario.UsuarioRoles.Clear();
+                usuario.UsuarioRoles.Add(new UsuarioRol
+                {
+                    IDUsuario = usuario.IDUsuario,
+                    IDRol = dto.IdRol.Value
+                });
             }
 
+            await _context.SaveChangesAsync();
             return NoContent();
         }
+
 
         // DELETE: api/usuario/5
         [HttpDelete("{id}")]
