@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SIREC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+05883c940a2cd1b2eb91ed338ec88be749a9ea18")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9d7f6f41bee5ac23b206869b8cce5c01a1f53850")]
 [assembly: System.Reflection.AssemblyProductAttribute("SIREC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SIREC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

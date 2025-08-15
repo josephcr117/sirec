@@ -1,7 +1,14 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+
 import {
   FormBuilder,
   FormGroup,
@@ -13,7 +20,9 @@ import * as bootstrap from 'bootstrap';
 import feather from 'feather-icons';
 
 import { AuthService } from '../../services/auth.service';
+import { Chart, ChartConfiguration, registerables } from 'chart.js';
 
+Chart.register(...registerables);
 @Component({
   selector: 'app-admin',
   standalone: true,
@@ -25,6 +34,9 @@ export class AdminComponent implements OnInit, AfterViewInit {
   usuarioForm!: FormGroup;
   editando: boolean = false;
   usuarioActualId: number | null = null;
+
+  @ViewChild('myChart') myChartRef!: ElementRef<HTMLCanvasElement>;
+  chart!: Chart;
 
   constructor(
     private router: Router,
@@ -69,9 +81,75 @@ export class AdminComponent implements OnInit, AfterViewInit {
       next: (data) => {
         this.usuarios = data;
         setTimeout(() => feather.replace(), 0);
+
+        this.actualizarGrafico();
       },
       error: (err) => console.error('Error al obtener usuarios:', err),
     });
+  }
+
+  actualizarGrafico() {
+    const conteo: Record<string, number> = {
+      Administrador: 0,
+      Paciente: 0,
+      Médico: 0,
+    };
+
+    this.usuarios.forEach((usuario) => {
+      console.log('Roles usuario:', usuario.roles); // <-- debug
+
+      usuario.roles.forEach((rolItem: any) => {
+        const rol = typeof rolItem === 'string' ? rolItem : rolItem.nombre;
+        const rolNormalized = rol.toLowerCase().trim();
+
+        if (rolNormalized === 'administrador') {
+          conteo['Administrador']++;
+        } else if (rolNormalized === 'paciente') {
+          conteo['Paciente']++;
+        } else if (rolNormalized === 'médico' || rolNormalized === 'medico') {
+          conteo['Médico']++;
+        }
+      });
+    });
+
+    const labels = Object.keys(conteo);
+    const data = Object.values(conteo);
+
+    if (this.chart) {
+      this.chart.data.labels = labels;
+      this.chart.data.datasets[0].data = data;
+      this.chart.update();
+    } else {
+      const config: ChartConfiguration = {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Cantidad de Usuarios',
+              data: data,
+              backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f'],
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function (value) {
+                  if (Number.isInteger(value)) {
+                    return value;
+                  }
+                  return '';
+                },
+              },
+            },
+          },
+        },
+      };
+      this.chart = new Chart(this.myChartRef.nativeElement, config);
+    }
   }
 
   // -------------------------------

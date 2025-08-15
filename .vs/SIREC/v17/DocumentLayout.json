@@ -1,101 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Brian\\Desktop\\Brian\\school\\Progra6\\SIREC\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{7B771B6C-1F4D-46D5-B07D-D2ABC2E1EFA9}|SIREC\\SIREC.csproj|c:\\users\\brian\\desktop\\brian\\school\\progra6\\sirec\\sirec\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B771B6C-1F4D-46D5-B07D-D2ABC2E1EFA9}|SIREC\\SIREC.csproj|solutionrelative:sirec\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7B771B6C-1F4D-46D5-B07D-D2ABC2E1EFA9}|SIREC\\SIREC.csproj|c:\\users\\brian\\desktop\\brian\\school\\progra6\\sirec\\sirec\\models\\cita.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B771B6C-1F4D-46D5-B07D-D2ABC2E1EFA9}|SIREC\\SIREC.csproj|solutionrelative:sirec\\models\\cita.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7B771B6C-1F4D-46D5-B07D-D2ABC2E1EFA9}|SIREC\\SIREC.csproj|c:\\users\\brian\\desktop\\brian\\school\\progra6\\sirec\\sirec\\models\\usuariorol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B771B6C-1F4D-46D5-B07D-D2ABC2E1EFA9}|SIREC\\SIREC.csproj|solutionrelative:sirec\\models\\usuariorol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7B771B6C-1F4D-46D5-B07D-D2ABC2E1EFA9}|SIREC\\SIREC.csproj|c:\\users\\brian\\desktop\\brian\\school\\progra6\\sirec\\sirec\\models\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B771B6C-1F4D-46D5-B07D-D2ABC2E1EFA9}|SIREC\\SIREC.csproj|solutionrelative:sirec\\models\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7B771B6C-1F4D-46D5-B07D-D2ABC2E1EFA9}|SIREC\\SIREC.csproj|c:\\users\\brian\\desktop\\brian\\school\\progra6\\sirec\\sirec\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B771B6C-1F4D-46D5-B07D-D2ABC2E1EFA9}|SIREC\\SIREC.csproj|solutionrelative:sirec\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CitasController.cs",
-              "DocumentMoniker": "C:\\Users\\Brian\\Desktop\\Brian\\school\\Progra6\\SIREC\\SIREC\\Controllers\\CitasController.cs",
-              "RelativeDocumentMoniker": "SIREC\\Controllers\\CitasController.cs",
-              "ToolTip": "C:\\Users\\Brian\\Desktop\\Brian\\school\\Progra6\\SIREC\\SIREC\\Controllers\\CitasController.cs",
-              "RelativeToolTip": "SIREC\\Controllers\\CitasController.cs",
-              "ViewState": "AgIAALMAAAAAAAAAAAAkwMIAAABUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T17:04:27.146Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Cita.cs",
-              "DocumentMoniker": "C:\\Users\\Brian\\Desktop\\Brian\\school\\Progra6\\SIREC\\SIREC\\Models\\Cita.cs",
-              "RelativeDocumentMoniker": "SIREC\\Models\\Cita.cs",
-              "ToolTip": "C:\\Users\\Brian\\Desktop\\Brian\\school\\Progra6\\SIREC\\SIREC\\Models\\Cita.cs",
-              "RelativeToolTip": "SIREC\\Models\\Cita.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAgwBUAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T17:03:02.866Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Rol.cs",
-              "DocumentMoniker": "C:\\Users\\Brian\\Desktop\\Brian\\school\\Progra6\\SIREC\\SIREC\\Models\\Rol.cs",
-              "RelativeDocumentMoniker": "SIREC\\Models\\Rol.cs",
-              "ToolTip": "C:\\Users\\Brian\\Desktop\\Brian\\school\\Progra6\\SIREC\\SIREC\\Models\\Rol.cs",
-              "RelativeToolTip": "SIREC\\Models\\Rol.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T16:05:17.504Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UsuarioRol.cs",
-              "DocumentMoniker": "C:\\Users\\Brian\\Desktop\\Brian\\school\\Progra6\\SIREC\\SIREC\\Models\\UsuarioRol.cs",
-              "RelativeDocumentMoniker": "SIREC\\Models\\UsuarioRol.cs",
-              "ToolTip": "C:\\Users\\Brian\\Desktop\\Brian\\school\\Progra6\\SIREC\\SIREC\\Models\\UsuarioRol.cs",
-              "RelativeToolTip": "SIREC\\Models\\UsuarioRol.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T16:04:48.548Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\Brian\\Desktop\\Brian\\school\\Progra6\\SIREC\\SIREC\\Models\\Usuario.cs",
-              "RelativeDocumentMoniker": "SIREC\\Models\\Usuario.cs",
-              "ToolTip": "C:\\Users\\Brian\\Desktop\\Brian\\school\\Progra6\\SIREC\\SIREC\\Models\\Usuario.cs",
-              "RelativeToolTip": "SIREC\\Models\\Usuario.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAzwAwAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T15:20:11.737Z"
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

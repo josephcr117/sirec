@@ -19,6 +19,7 @@
     "@angular/router": "^19.2.0",
     "angular-datatables": "^19.0.0",
     "bootstrap": "^5.3.7",
+    "chart.js": "^4.5.0",
     "feather-icons": "^4.29.2",
     "jwt-decode": "^4.0.0",
     "rxjs": "~7.8.0",
